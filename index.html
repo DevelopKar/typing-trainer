@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Typing Trainer</title>
+
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui;
+}
+
+body {
+    background:linear-gradient(135deg,#0f172a,#020617);
+    color:white;
+}
+
+/* HERO */
+.hero {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1 {
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.hero p {
+    color:#94a3b8;
+    margin-bottom:20px;
+}
+
+.start-btn {
+    padding:15px 30px;
+    background:#22c55e;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.start-btn:hover {
+    transform:scale(1.1);
+}
+
+/* STATS */
+.stats {
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:40px;
+}
+
+.card {
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+/* LESSONS */
+.lessons {
+    padding:50px;
+    text-align:center;
+}
+
+.lessons h2 {
+    margin-bottom:20px;
+}
+
+.lesson-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.lesson-card {
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.lesson-card:hover {
+    transform:translateY(-10px);
+    background:#22c55e;
+}
+
+/* keyboard visual */
+.keyboard {
+    margin-top:50px;
+    text-align:center;
+}
+
+.row {
+    margin-bottom:6px;
+}
+
+.key {
+    display:inline-block;
+    padding:12px;
+    margin:3px;
+    background:#334155;
+    border-radius:6px;
+    min-width:42px;
+    text-align:center;
+    font-size:14px;
+}
+
+.wide { min-width:80px; }
+.space { min-width:300px; }
+
+.home {
+    background:#f59e0b;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>DevelopKar Typing Improvement Course</h1>
+    <p>Developed By DevelopKar</p>
+
+    <button class="start-btn" onclick="scrollToLessons()">Start Training</button>
+
+    <div class="stats">
+        <div class="card">
+            <h2>lesson</h2>
+            <p>Updates Everyday</p>
+        </div>
+        <div class="card">
+            <h2>50 WPM</h2>
+            <p>Goal</p>
+        </div>
+        <div class="card">
+            <h2>100%</h2>
+            <p>Accuracy</p>
+        </div>
+    </div>
+</section>
+
+<!-- LESSONS -->
+<section class="lessons" id="lessons">
+    <h2>Select Lesson</h2>
+
+    <div class="lesson-grid">
+
+        <div class="lesson-card" onclick="startLesson(1)">
+            <h3>Lesson 1</h3>
+            <p>Home Row (ASDF JKL;)</p>
+        </div>
+
+        <div class="lesson-card">
+            <h3>Lesson 2</h3>
+            <p>Coming Soon</p>
+        </div>
+
+        <div class="lesson-card">
+            <h3>Lesson 3</h3>
+            <p>Coming Soon</p>
+        </div>
+
+    </div>
+
+    <!-- Keyboard Preview -->
+ <div class="keyboard">
+
+    <!-- Row 1 -->
+    <div class="row">
+        <span class="key wide">Esc</span>
+        <span class="key">1</span>
+        <span class="key">2</span>
+        <span class="key">3</span>
+        <span class="key">4</span>
+        <span class="key">5</span>
+        <span class="key">6</span>
+        <span class="key">7</span>
+        <span class="key">8</span>
+        <span class="key">9</span>
+        <span class="key">0</span>
+        <span class="key">-</span>
+        <span class="key">=</span>
+        <span class="key wide">Backspace</span>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+        <span class="key wide">Tab</span>
+        <span class="key">q</span>
+        <span class="key">w</span>
+        <span class="key">e</span>
+        <span class="key">r</span>
+        <span class="key">t</span>
+        <span class="key">y</span>
+        <span class="key">u</span>
+        <span class="key">i</span>
+        <span class="key">o</span>
+        <span class="key">p</span>
+        <span class="key">[</span>
+        <span class="key">]</span>
+        <span class="key">\</span>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row">
+        <span class="key wide">Caps</span>
+        <span class="key home">a</span>
+        <span class="key home">s</span>
+        <span class="key home">d</span>
+        <span class="key home">f</span>
+        <span class="key home">j</span>
+        <span class="key home">k</span>
+        <span class="key home">l</span>
+        <span class="key home">;</span>
+        <span class="key">'</span>
+        <span class="key wide">Enter</span>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row">
+        <span class="key wide">Shift</span>
+        <span class="key">z</span>
+        <span class="key">x</span>
+        <span class="key">c</span>
+        <span class="key">v</span>
+        <span class="key">b</span>
+        <span class="key">n</span>
+        <span class="key">m</span>
+        <span class="key">,</span>
+        <span class="key">.</span>
+        <span class="key">/</span>
+        <span class="key wide">Shift</span>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="row">
+        <span class="key wide">Ctrl</span>
+        <span class="key wide">Win</span>
+        <span class="key wide">Alt</span>
+        <span class="key space">Space</span>
+        <span class="key wide">Alt</span>
+        <span class="key wide">Ctrl</span>
+    </div>
+
+</div>
+
+</section>
+
+<script>
+
+function scrollToLessons(){
+    document.getElementById("lessons").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function startLesson(id){
+    // redirect to your typing page
+    window.location.href = "lesson1.html";
+}
+
+</script>
+
+</body>
+</html>
