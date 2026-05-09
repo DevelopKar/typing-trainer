@@ -1,462 +1,873 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DevelopKar Typing Trainer</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>DevelopKar - Neo Typing</title>
 
 <style>
 
-body{
+*{
     margin:0;
-    background:linear-gradient(135deg,#020617,#0f172a);
-    color:white;
-    font-family:system-ui;
-    padding:20px;
+    padding:0;
     box-sizing:border-box;
-    overflow-x:auto;
 }
+
+body{
+
+    background:
+    radial-gradient(circle at top,
+    #111827,
+    #020617 70%);
+
+    color:white;
+
+    font-family:system-ui;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    padding:30px;
+}
+
+/* BACKGROUND */
+
+.bg-light{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    rgba(59,130,246,0.10);
+
+    filter:blur(120px);
+
+    top:-200px;
+    right:-200px;
+
+    z-index:-1;
+}
+
+/* CONTAINER */
 
 .container{
-    width:fit-content;
-    min-width:1100px;
+
+    width:1100px;
+
     margin:auto;
-    background:rgba(30,41,59,0.65);
-    backdrop-filter:blur(10px);
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 0 40px rgba(0,0,0,0.5);
-    transform:scale(0.95);
-transform-origin:top center;
+
+    background:
+    rgba(15,23,42,0.72);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 80px rgba(0,0,0,0.4);
 }
 
-/* title */
-h2{
+/* TITLE */
+
+.title{
+
     text-align:center;
-    margin-top:0;
-    margin-bottom:20px;
+
+    margin-bottom:30px;
 }
 
-/* input */
-.name-box input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    box-sizing:border-box;
-    outline:none;
+.title h1{
+
+    font-size:48px;
+
+    color:#60a5fa;
 }
 
-/* timer */
-.timer-wrapper{
-    margin-top:15px;
-}
+.title p{
 
-#timer{
-    margin-bottom:8px;
+    color:#94a3b8;
+
+    margin-top:10px;
+
     font-size:18px;
 }
 
-.timer-bar{
+/* INPUT */
+
+.name-box input{
+
     width:100%;
-    height:8px;
-    background:#334155;
+
+    padding:18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:#0f172a;
+
+    color:white;
+
+    font-size:17px;
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+/* TIMER */
+
+.timer-wrap{
+
+    margin-top:22px;
+}
+
+#timer{
+
+    margin-bottom:8px;
+
+    font-size:18px;
+
+    color:#cbd5e1;
+}
+
+.timer-bar{
+
+    width:100%;
+    height:10px;
+
+    background:#1e293b;
+
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .timer-fill{
+
     width:100%;
     height:100%;
-    background:#22c55e;
+
+    background:
+    linear-gradient(90deg,
+    #3b82f6,
+    #60a5fa);
+
     transition:1s linear;
 }
 
-/* lesson text */
+/* TEXT AREA */
+
 .text{
-    margin-top:20px;
-    background:#1e293b;
-    padding:25px;
-    border-radius:14px;
-    font-size:30px;
-    text-align:center;
-    letter-spacing:3px;
-    min-height:70px;
+
+    margin-top:28px;
+
+    background:
+    rgba(2,6,23,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    min-height:150px;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+}
+
+/* LETTER BOX */
+
+.char-box{
+
+    min-width:58px;
+    height:64px;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-wrap:wrap;
+
+    border-radius:18px;
+
+    font-size:28px;
+    font-weight:bold;
+
+    background:#111827;
+
+    border:
+    2px solid #1e293b;
+
+    transition:0.18s;
 }
 
-/* typing states */
-.correct{
-    color:#22c55e;
+/* SPACE */
+
+.space-box{
+
+    min-width:100px;
+
+    font-size:14px;
+
+    color:#94a3b8;
+
+    background:#0f172a;
+
+    border:
+    2px dashed #475569;
+
+    letter-spacing:2px;
 }
+
+/* CURRENT */
 
 .current{
-    border-bottom:3px solid #22c55e;
+
+    border:
+    2px solid #60a5fa;
+
+    box-shadow:
+    0 0 25px rgba(96,165,250,0.45);
+
+    transform:translateY(-4px);
 }
+
+/* CORRECT */
+
+.correct{
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
+
+    opacity:0.2;
+
+    transform:scale(0.82);
+
+    border:none;
+}
+
+/* WRONG */
 
 .wrong{
-    color:#ef4444;
+
+    background:
+    linear-gradient(135deg,
+    #ef4444,
+    #dc2626);
+
+    border:none;
+
+    animation:shake 0.2s;
 }
 
-/* textarea */
+@keyframes shake{
+
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    50%{transform:translateX(4px);}
+    75%{transform:translateX(-4px);}
+    100%{transform:translateX(0);}
+}
+
+/* TEXTAREA */
+
 textarea{
+
     width:100%;
     height:90px;
-    margin-top:18px;
+
+    margin-top:25px;
+
+    background:#0f172a;
+
     border:none;
+
     outline:none;
-    border-radius:12px;
-    padding:15px;
-    font-size:18px;
+
     resize:none;
-    box-sizing:border-box;
-}
 
-/* stats */
-.stats{
-    display:flex;
-    justify-content:space-between;
-    margin-top:15px;
-    background:#111827;
-    padding:15px;
-    border-radius:12px;
-    font-size:18px;
-}
-
-/* button */
-.start-btn{
-    width:100%;
-    margin-top:18px;
-    padding:16px;
-    border:none;
-    border-radius:12px;
-    background:#22c55e;
     color:white;
+
+    font-size:18px;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+/* STATS */
+
+.stats{
+
+    margin-top:24px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.card{
+
+    background:
+    rgba(2,6,23,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    text-align:center;
+}
+
+.card h3{
+
+    color:#94a3b8;
+
+    margin-bottom:10px;
+}
+
+.card p{
+
+    font-size:35px;
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* BUTTON */
+
+.start-btn{
+
+    width:100%;
+
+    margin-top:26px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
     font-size:18px;
     font-weight:bold;
+
     cursor:pointer;
+
     transition:0.2s;
 }
 
 .start-btn:hover{
-    transform:scale(1.01);
-    background:#16a34a;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 30px rgba(59,130,246,0.35);
 }
 
-/* keyboard */
+/* KEYBOARD */
+
 .keyboard{
-    margin-top:25px;
-    user-select:none;
+
+    margin-top:30px;
 }
 
 .row{
+
     display:flex;
     justify-content:center;
-    margin-bottom:8px;
+
+    margin-bottom:10px;
 }
 
 .key{
+
+    min-width:58px;
+    height:58px;
+
+    margin:5px;
+
+    border-radius:16px;
+
+    background:#111827;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#334155;
-    color:white;
-    margin:4px;
-    height:44px;
-    min-width:44px;
-    border-radius:8px;
+
     transition:0.08s;
-    font-size:14px;
-    box-shadow:0 3px 0 #0f172a;
 }
 
-/* highlighted home keys */
+/* SPACE KEY */
+
+#k-space{
+
+    width:320px;
+}
+
+/* HOME KEYS */
+
 .highlight{
-    background:#f59e0b !important;
+
+    background:
+    linear-gradient(135deg,
+    #f59e0b,
+    #fbbf24);
+
     color:black;
+
     font-weight:bold;
 }
 
-/* current required key */
+/* NEXT KEY */
+
 .next-key{
-    background:#3b82f6 !important;
-    box-shadow:0 0 20px #3b82f6;
+
+    box-shadow:
+    0 0 25px rgba(59,130,246,0.65);
+
+    border:
+    1px solid #60a5fa;
 }
 
-/* pressed key */
+/* PRESSED */
+
 .active{
-    transform:scale(0.92);
-    background:#22c55e !important;
-    box-shadow:0 0 20px #22c55e;
+
+    transform:scale(0.9);
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
 }
 
-/* popup */
+/* POPUP */
+
 .popup{
+
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,0.75);
+
+    background:rgba(0,0,0,0.72);
+
     display:none;
     justify-content:center;
     align-items:center;
+
     z-index:999;
+
+    backdrop-filter:blur(10px);
 }
 
-.popup-content{
-    width:350px;
-    background:#1e293b;
-    padding:30px;
-    border-radius:16px;
+.popup-box{
+
+    width:420px;
+
+    background:#0f172a;
+
+    border-radius:28px;
+
+    padding:40px;
+
     text-align:center;
-    animation:popup 0.25s ease;
 }
 
-@keyframes popup{
-    from{
-        opacity:0;
-        transform:scale(0.8);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+.popup-box h2{
+
+    font-size:40px;
+
+    color:#60a5fa;
+
+    margin-bottom:18px;
 }
 
-.popup-content h2{
-    margin-top:0;
+.popup-box p{
+
+    margin:14px 0;
+
+    font-size:20px;
 }
 
-.popup-content p{
-    font-size:18px;
-}
+.popup-box button{
 
-.popup-content button{
-    margin-top:15px;
     width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#22c55e;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-}
 
-/* widths */
-.w-backspace{ width:120px; }
-.w-tab{ width:90px; }
-.w-caps{ width:100px; }
-.w-enter{ width:120px; }
-.w-shift{ width:140px; }
-.w-space{ width:350px; }
+    margin-top:20px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
 
 </style>
 </head>
-
 <body>
 
+<div class="bg-light"></div>
+
 <div class="container">
-<h2>DevelopKar</h2>
-<h2>Lesson 1 - F & J Training</h2>
+
+<div class="title">
+
+<h1>DevelopKar</h1>
+
+<p>
+Neo Lesson 1 — F & J Precision Training
+</p>
+
+</div>
+
+<!-- NAME -->
 
 <div class="name-box">
-    <input id="username" placeholder="Enter your name">
+
+<input id="username"
+placeholder="Enter your name">
+
 </div>
 
-<div class="timer-wrapper">
-    <div id="timer">Time: 60</div>
+<!-- TIMER -->
 
-    <div class="timer-bar">
-        <div id="timerFill" class="timer-fill"></div>
-    </div>
+<div class="timer-wrap">
+
+<div id="timer">
+Time: 60
 </div>
 
-<div id="text" class="text"></div>
+<div class="timer-bar">
 
-<textarea id="input" disabled></textarea>
+<div id="timerFill"
+class="timer-fill"></div>
+
+</div>
+
+</div>
+
+<!-- TEXT -->
+
+<div id="text"
+class="text"></div>
+
+<!-- INPUT -->
+
+<textarea id="input"
+disabled></textarea>
+
+<!-- STATS -->
 
 <div class="stats">
-    <span>WPM: <b id="wpm">0</b></span>
-    <span>Accuracy: <b id="acc">100</b>%</span>
-    <span>Score: <b id="score">0</b></span>
-</div>
 
-<button class="start-btn" onclick="start()">Start Typing</button>
+<div class="card">
 
-<div id="keyboard" class="keyboard"></div>
+<h3>WPM</h3>
+
+<p id="wpm">0</p>
 
 </div>
 
-<!-- popup -->
-<div id="popup" class="popup">
+<div class="card">
 
-    <div class="popup-content">
+<h3>Accuracy</h3>
 
-        <h2>🎉 Nice!</h2>
+<p id="acc">100</p>
 
-        <p>You successfully completed the lesson</p>
+</div>
 
-        <p>WPM: <b id="p_wpm"></b></p>
+<div class="card">
 
-        <p>Accuracy: <b id="p_acc"></b>%</p>
+<h3>Score</h3>
 
-        <p>Score: <b id="p_score"></b></p>
+<p id="score">0</p>
 
-        <button onclick="goHome()">Go Home</button>
+</div>
 
-    </div>
+</div>
+
+<!-- BUTTON -->
+
+<button class="start-btn"
+onclick="start()">
+
+Start Typing
+
+</button>
+
+<!-- KEYBOARD -->
+
+<div id="keyboard"
+class="keyboard"></div>
+
+</div>
+
+<!-- POPUP -->
+
+<div id="popup"
+class="popup">
+
+<div class="popup-box">
+
+<h2>Completed</h2>
+
+<p>
+WPM:
+<b id="p_wpm"></b>
+</p>
+
+<p>
+Accuracy:
+<b id="p_acc"></b>%
+</p>
+
+<p>
+Score:
+<b id="p_score"></b>
+</p>
+
+<button onclick="goHome()">
+
+Go Home
+
+</button>
+
+</div>
 
 </div>
 
 <script>
 
 /* LESSON */
-const fullLesson =
-"fj jf fj jf fjfjfj jfjfjf ffff jjjj fjfjfjfjf jfjfj fj fj jf jj jfjf fjfj jfjfjfj jjjj ffff jfjfjf fjfjfj jfjfjfj fjfjfj jfjfj jfjfj fjfjfjfj";
 
-/* STATE */
-let words = fullLesson.split(" ");
-let chunkSize = 2;
+const fullLesson =
+
+"fj jf fj jf fjfjfj jfjfjf ffff jjjj fjfjfjfjf jfjfj fj fj jf jj jfjf fjfj jfjfjfj jjjj ffff jfjfjf fjfjfj";
+
+/* CHUNKS */
+
+let words =
+fullLesson.split(" ");
+
 let pointer = 0;
 
-let currentText = "";
-let index = 0;
+let currentChunk = "";
+
+let chunkSize = 4;
+
+/* STATE */
+
+let currentIndex = 0;
 
 let correct = 0;
 let errors = 0;
 
-let started = false;
-
 let time = 60;
+
 let timer = null;
+
+let started = false;
 
 let startTime = 0;
 
-/* ELEMENTS */
-const textDiv = document.getElementById("text");
-const input = document.getElementById("input");
+/* DOM */
 
-/* KEYBOARD LAYOUT */
-const keyboardLayout = [
+const textDiv =
+document.getElementById("text");
 
-["Esc","1","2","3","4","5","6","7","8","9","0","-","=","Backspace"],
+const input =
+document.getElementById("input");
 
-["Tab","q","w","e","r","t","y","u","i","o","p","[","]","\\"],
+/* LOAD CHUNK */
 
-["Caps","a","s","d","f","g","h","j","k","l",";","'","Enter"],
+function loadChunk(){
 
-["Shift","z","x","c","v","b","n","m",",",".","/","Shift"],
+    if(pointer >= words.length){
 
-["Ctrl","Win","Alt","Space","Alt","Fn","Menu","Ctrl"]
+        finish();
+        return;
+    }
+
+    currentChunk =
+
+    words.slice(
+        pointer,
+        pointer + chunkSize
+    ).join(" ");
+
+    pointer += chunkSize;
+
+    currentIndex = 0;
+
+    textDiv.innerHTML = "";
+
+    currentChunk.split("").forEach((char,i)=>{
+
+        const box =
+        document.createElement("div");
+
+        box.classList.add("char-box");
+
+        if(char===" "){
+
+            box.innerText = "SPACE";
+
+            box.classList.add(
+            "space-box");
+
+        }
+
+        else{
+
+            box.innerText = char;
+
+        }
+
+        if(i===0){
+
+            box.classList.add(
+            "current");
+
+        }
+
+        textDiv.appendChild(box);
+
+    });
+
+}
+
+/* KEYBOARD */
+
+const layout = [
+
+["1","2","3","4","5","6","7","8","9","0"],
+
+["q","w","e","r","t","y","u","i","o","p"],
+
+["a","s","d","f","g","h","j","k","l"],
+
+["z","x","c","v","b","n","m"],
+
+["space"]
 
 ];
 
-/* RENDER KEYBOARD */
-keyboardLayout.forEach(row=>{
+layout.forEach(row=>{
 
-    const rowDiv = document.createElement("div");
+    const rowDiv =
+    document.createElement("div");
+
     rowDiv.classList.add("row");
 
     row.forEach(k=>{
 
-        const key = document.createElement("div");
-
-        key.innerText = k;
+        const key =
+        document.createElement("div");
 
         key.classList.add("key");
 
-        const lower = k.toLowerCase();
+        key.innerText = k;
 
-        key.id = "k-" + lower;
+        key.id = "k-"+k;
 
-        /* widths */
-        if(k==="Backspace") key.classList.add("w-backspace");
-        if(k==="Tab") key.classList.add("w-tab");
-        if(k==="Caps") key.classList.add("w-caps");
-        if(k==="Enter") key.classList.add("w-enter");
-        if(k==="Shift") key.classList.add("w-shift");
-        if(k==="Space") key.classList.add("w-space");
+        if(k==="f" || k==="j"){
 
-        /* highlight F J */
-        if(lower==="f" || lower==="j"){
-            key.classList.add("highlight");
+            key.classList.add(
+            "highlight");
+
         }
 
         rowDiv.appendChild(key);
 
     });
 
-    document.getElementById("keyboard").appendChild(rowDiv);
+    keyboard.appendChild(rowDiv);
 
 });
 
-/* LOAD TEXT CHUNK */
-function loadChunk(){
-
-    if(pointer >= words.length){
-        finish();
-        return;
-    }
-
-    currentText =
-    words.slice(pointer,pointer+chunkSize).join(" ");
-
-    pointer += chunkSize;
-
-    textDiv.innerHTML = "";
-
-    index = 0;
-
-    currentText.split("").forEach((char,i)=>{
-
-        const span = document.createElement("span");
-
-        span.innerText = char;
-
-        if(i===0){
-            span.classList.add("current");
-        }
-
-        textDiv.appendChild(span);
-
-    });
-
-    updateNextKey();
-
-}
-
 /* START */
+
 function start(){
 
-    const username =
-    document.getElementById("username").value.trim();
+    if(
+        document.getElementById(
+        "username").value.trim()===""
+    ){
 
-    if(username===""){
-        alert("Enter name first");
+        alert("Enter name");
+
         return;
     }
 
-    /* reset */
     pointer = 0;
+
+    currentIndex = 0;
+
     correct = 0;
     errors = 0;
+
     time = 60;
-
-    document.getElementById("popup").style.display = "none";
-
-    loadChunk();
 
     started = true;
 
-    input.disabled = false;
+    startTime = Date.now();
 
-    input.value = "";
+    input.disabled = false;
 
     input.focus();
 
-    startTime = new Date();
+    loadChunk();
+
+    updateNextKey();
 
     clearInterval(timer);
 
@@ -464,106 +875,182 @@ function start(){
 
         time--;
 
-        document.getElementById("timer").innerText =
-        "Time: " + time;
+        document.getElementById(
+        "timer").innerText =
 
-        let percent = (time/60)*100;
+        "Time: "+time;
 
-        document.getElementById("timerFill").style.width =
-        percent + "%";
+        document.getElementById(
+        "timerFill").style.width =
+
+        (time/60)*100 + "%";
 
         updateStats();
 
         if(time<=0){
+
             finish();
+
         }
 
     },1000);
 
 }
 
-/* UPDATE NEXT KEY GLOW */
+/* NEXT KEY */
+
 function updateNextKey(){
 
-    document.querySelectorAll(".next-key")
+    document.querySelectorAll(
+    ".next-key")
+
     .forEach(el=>{
-        el.classList.remove("next-key");
+
+        el.classList.remove(
+        "next-key");
+
     });
 
-    let next = currentText[index];
+    let next =
+    currentChunk[currentIndex];
 
     if(next===" "){
+
         next = "space";
+
     }
 
     const key =
-    document.getElementById("k-"+next.toLowerCase());
+    document.getElementById(
+    "k-"+next);
 
     if(key){
-        key.classList.add("next-key");
+
+        key.classList.add(
+        "next-key");
+
     }
 
 }
 
-/* TYPING */
-document.addEventListener("keydown",(e)=>{
+/* INPUT */
+
+document.addEventListener(
+"keydown",(e)=>{
 
     if(!started) return;
 
     let k = e.key;
 
-    /* visual press */
-    let visualKey = k===" " ? "space" : k.toLowerCase();
+    let visual =
+
+    k===" "
+    ? "space"
+    : k.toLowerCase();
 
     const keyEl =
-    document.getElementById("k-"+visualKey);
+    document.getElementById(
+    "k-"+visual);
 
     if(keyEl){
-        keyEl.classList.add("active");
+
+        keyEl.classList.add(
+        "active");
+
     }
 
     e.preventDefault();
 
-    let expected = currentText[index];
+    const expected =
+    currentChunk[currentIndex];
+
+    const boxes =
+    document.querySelectorAll(
+    ".char-box");
+
+    /* WRONG */
 
     if(k!==expected){
+
+        boxes[currentIndex]
+        .classList.add("wrong");
 
         errors++;
 
         updateStats();
 
-        return;
+        setTimeout(()=>{
 
+            boxes[currentIndex]
+            .classList.remove(
+            "wrong");
+
+        },180);
+
+        return;
     }
 
-    const spans =
-    textDiv.querySelectorAll("span");
+    /* CORRECT */
 
-    spans[index].classList.remove("current");
+    boxes[currentIndex]
+    .classList.remove("current");
 
-    spans[index].classList.add("correct");
+    boxes[currentIndex]
+    .classList.add("correct");
 
-    index++;
+    boxes[currentIndex]
+    .animate([
+
+        {
+            transform:
+            "scale(1) rotate(0deg)",
+
+            opacity:1,
+
+            filter:"blur(0px)"
+        },
+
+        {
+            transform:
+            "scale(0.2) rotate(30deg)",
+
+            opacity:0,
+
+            filter:"blur(10px)"
+        }
+
+    ],{
+
+        duration:220,
+        easing:"ease-out"
+
+    });
+
+    currentIndex++;
 
     correct++;
 
-    if(spans[index]){
+    input.value += k;
 
-        spans[index].classList.add("current");
+    /* NEXT CHUNK */
 
-    }else{
+    if(currentIndex >= currentChunk.length){
 
-        input.value = "";
+        setTimeout(()=>{
 
-        loadChunk();
+            loadChunk();
+
+            updateNextKey();
+
+        },180);
 
         updateStats();
 
         return;
-
     }
 
-    input.value += k;
+    boxes[currentIndex]
+    .classList.add("current");
 
     updateStats();
 
@@ -571,50 +1058,76 @@ document.addEventListener("keydown",(e)=>{
 
 });
 
-/* KEY RELEASE */
-document.addEventListener("keyup",(e)=>{
+/* KEYUP */
 
-    let visualKey =
-    e.key===" " ? "space" : e.key.toLowerCase();
+document.addEventListener(
+"keyup",(e)=>{
+
+    let visual =
+
+    e.key===" "
+    ? "space"
+    : e.key.toLowerCase();
 
     const keyEl =
-    document.getElementById("k-"+visualKey);
+    document.getElementById(
+    "k-"+visual);
 
     if(keyEl){
-        keyEl.classList.remove("active");
+
+        keyEl.classList.remove(
+        "active");
+
     }
 
 });
 
 /* STATS */
+
 function updateStats(){
 
-    let total = correct + errors;
+    const total =
+    correct + errors;
 
-    let acc =
-    total>0 ? (correct/total)*100 : 100;
+    const acc =
 
-    let timePassed =
-    (new Date() - startTime)/60000;
+    total>0
+    ? (correct/total)*100
+    : 100;
 
-    let wpm =
-    timePassed>0 ? ((correct/5)/timePassed) : 0;
+    const minutes =
 
-    let score =
+    (Date.now()-startTime)
+    /60000;
+
+    const wpm =
+
+    minutes>0
+    ? ((correct/5)/minutes)
+    : 0;
+
+    const score =
     (correct*2)-errors;
 
-    document.getElementById("acc").innerText =
-    acc.toFixed(2);
+    document.getElementById(
+    "acc").innerText =
 
-    document.getElementById("wpm").innerText =
+    acc.toFixed(0);
+
+    document.getElementById(
+    "wpm").innerText =
+
     Math.round(wpm);
 
-    document.getElementById("score").innerText =
+    document.getElementById(
+    "score").innerText =
+
     score;
 
 }
 
 /* FINISH */
+
 function finish(){
 
     clearInterval(timer);
@@ -623,31 +1136,41 @@ function finish(){
 
     input.disabled = true;
 
-    document.getElementById("popup").style.display =
+    document.getElementById(
+    "popup").style.display =
+
     "flex";
 
-    document.getElementById("p_wpm").innerText =
-    document.getElementById("wpm").innerText;
+    document.getElementById(
+    "p_wpm").innerText =
 
-    document.getElementById("p_acc").innerText =
-    document.getElementById("acc").innerText;
+    document.getElementById(
+    "wpm").innerText;
 
-    document.getElementById("p_score").innerText =
-    document.getElementById("score").innerText;
+    document.getElementById(
+    "p_acc").innerText =
+
+    document.getElementById(
+    "acc").innerText;
+
+    document.getElementById(
+    "p_score").innerText =
+
+    document.getElementById(
+    "score").innerText;
 
 }
 
 /* HOME */
+
 function goHome(){
 
-    window.location.href = "../index.html";
+    window.location.href =
+    "../index.html";
 
 }
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
