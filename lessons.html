@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>DevelopKar - Lessons</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:system-ui;
+
+    background:
+    radial-gradient(circle at top,
+    #111827,
+    #020617 70%);
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* BG LIGHT */
+
+.bg-light{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    rgba(59,130,246,0.10);
+
+    filter:blur(120px);
+
+    top:-220px;
+    right:-200px;
+
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    width:100%;
+
+    height:85px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    background:
+    rgba(15,23,42,0.78);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.06);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 50px;
+}
+
+/* LOGO */
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+
+    letter-spacing:1px;
+}
+
+/* NAV LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    gap:18px;
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#cbd5e1;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    transition:0.2s;
+
+    font-size:16px;
+}
+
+.nav-links a:hover{
+
+    background:
+    rgba(59,130,246,0.15);
+
+    color:#60a5fa;
+}
+
+/* HERO */
+
+.hero{
+
+    width:1200px;
+
+    margin:auto;
+
+    padding:80px 20px 40px;
+
+    text-align:center;
+}
+
+.hero h1{
+
+    font-size:65px;
+
+    margin-bottom:18px;
+}
+
+.hero span{
+
+    color:#60a5fa;
+}
+
+.hero p{
+
+    color:#94a3b8;
+
+    font-size:20px;
+
+    line-height:1.8;
+}
+
+/* LESSON GRID */
+
+.lesson-grid{
+
+    width:1200px;
+
+    margin:20px auto 100px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:30px;
+}
+
+/* CARD */
+
+.lesson-card{
+
+    background:
+    rgba(15,23,42,0.78);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    transition:0.25s;
+
+    backdrop-filter:blur(12px);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.lesson-card:hover{
+
+    transform:
+    translateY(-8px);
+
+    border:
+    1px solid rgba(96,165,250,0.25);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* TOP GLOW */
+
+.lesson-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:
+    rgba(59,130,246,0.12);
+
+    border-radius:50%;
+
+    top:-80px;
+    right:-80px;
+
+    filter:blur(40px);
+}
+
+/* LEVEL */
+
+.level{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:14px;
+
+    background:
+    rgba(59,130,246,0.15);
+
+    color:#60a5fa;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+}
+
+/* TITLE */
+
+.lesson-card h2{
+
+    font-size:32px;
+
+    margin-bottom:14px;
+}
+
+/* TEXT */
+
+.lesson-card p{
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+}
+
+/* BUTTON */
+
+.lesson-btn{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    font-size:17px;
+    font-weight:bold;
+
+    color:white;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    transition:0.2s;
+}
+
+.lesson-btn:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:
+    0 12px 30px rgba(59,130,246,0.35);
+}
+
+/* FOOTER */
+
+.footer{
+
+    width:100%;
+
+    padding:28px;
+
+    text-align:center;
+
+    border-top:
+    1px solid rgba(255,255,255,0.06);
+
+    background:
+    rgba(15,23,42,0.75);
+
+    color:#94a3b8;
+
+    font-size:15px;
+}
+
+.footer span{
+
+    color:#60a5fa;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-light"></div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        DevelopKar
+    </div>
+
+    <div class="nav-links">
+
+        <a href="../index.html">Home</a>
+
+        <a href="#">Lessons</a>
+
+        <a href="#">Games</a>
+
+        <a href="#">Practice</a>
+
+        <a href="#">Notes</a>
+
+        <a href="#">About</a>
+
+    </div>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+        Select Your
+        <span>Lesson</span>
+    </h1>
+
+    <p>
+        Start your typing journey from beginner
+        to advanced keyboard mastery.
+    </p>
+
+</section>
+
+<!-- LESSONS -->
+
+<section class="lesson-grid">
+
+    <!-- LESSON 1 -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Beginner
+        </div>
+
+        <h2>
+            1. F and J Training
+        </h2>
+
+        <p>
+            Learn F and J home row finger
+            placement with beginner practice.
+        </p>
+
+        <a href="lesson1.html"
+        class="lesson-btn">
+
+            Start Lesson
+
+        </a>
+
+    </div>
+
+    <!-- LESSON 2 -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Beginner
+        </div>
+
+        <h2>
+            Lesson 2
+        </h2>
+
+        <p>
+            Updating Soon.
+        </p>
+
+        <a href="#"
+        class="lesson-btn">
+
+            Coming Soon
+
+        </a>
+
+    </div>
+
+    <!-- LESSON 3 -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Begginer
+        </div>
+
+        <h2>
+            Lesson 3
+        </h2>
+
+        <p>
+            Updating Soon.
+        </p>
+
+        <a href="#"
+        class="lesson-btn">
+
+            Coming Soon
+
+        </a>
+
+    </div>
+
+    <!-- LESSON 4 -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Beginner
+        </div>
+
+        <h2>
+            Lesson 4
+        </h2>
+
+        <p>
+            Updating Soon
+        </p>
+
+        <a href="#"
+        class="lesson-btn">
+
+            Coming Soon
+
+        </a>
+
+    </div>
+
+    <!-- EMPTY -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Advanced
+        </div>
+
+        <h2>
+            Future Lesson
+        </h2>
+
+        <p>
+            More advanced typing systems
+            and challenge modes coming soon.
+        </p>
+
+        <a href="#"
+        class="lesson-btn">
+
+            Locked
+
+        </a>
+
+    </div>
+
+    <!-- EMPTY -->
+
+    <div class="lesson-card">
+
+        <div class="level">
+            Expert
+        </div>
+
+        <h2>
+            Master Arena
+        </h2>
+
+        <p>
+            Ultimate speed, rhythm and
+            endurance typing challenge.
+        </p>
+
+        <a href="#"
+        class="lesson-btn">
+
+            Locked
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Copyright
+    <span>DevelopKar</span>
+
+</div>
+
+</body>
+</html>
