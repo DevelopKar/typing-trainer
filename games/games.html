@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>DevelopKar - Games</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top,
+    #111827,
+    #020617 70%);
+
+    color:white;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+}
+
+/* BG LIGHT */
+
+.bg-light{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    rgba(59,130,246,0.08);
+
+    filter:blur(120px);
+
+    top:-220px;
+    right:-220px;
+
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    width:100%;
+    height:78px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    background:
+    rgba(15,23,42,0.78);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.05);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 40px;
+}
+
+.logo{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:14px;
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#cbd5e1;
+
+    padding:10px 16px;
+
+    border-radius:12px;
+
+    transition:0.2s;
+}
+
+.nav-links a:hover{
+
+    background:
+    rgba(59,130,246,0.12);
+
+    color:#60a5fa;
+}
+
+/* MAIN */
+
+.main{
+
+    width:100%;
+
+    max-width:1550px;
+
+    margin:auto;
+
+    padding:40px 30px 90px;
+}
+
+/* HERO */
+
+.hero{
+
+    background:
+    rgba(15,23,42,0.72);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:38px;
+
+    padding:55px;
+
+    backdrop-filter:blur(14px);
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.25);
+}
+
+.hero h1{
+
+    font-size:68px;
+
+    color:#f8fafc;
+}
+
+.hero span{
+
+    color:#60a5fa;
+}
+
+.hero p{
+
+    margin-top:18px;
+
+    color:#94a3b8;
+
+    font-size:19px;
+
+    line-height:1.8;
+
+    max-width:850px;
+
+    margin-inline:auto;
+}
+
+/* SECTION */
+
+.section{
+
+    margin-top:65px;
+}
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:34px;
+}
+
+.section-title{
+
+    font-size:46px;
+
+    font-weight:bold;
+
+    color:#f8fafc;
+
+    position:relative;
+
+    display:inline-block;
+}
+
+.section-title::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:-14px;
+
+    width:90px;
+    height:5px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(90deg,
+    #2563eb,
+    #60a5fa);
+}
+
+.section-desc{
+
+    margin-top:28px;
+
+    color:#94a3b8;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    max-width:760px;
+
+    margin-inline:auto;
+}
+
+/* LESSON GAMES */
+
+.lesson-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+/* CARD */
+
+.card{
+
+    background:
+    rgba(15,23,42,0.72);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:32px;
+
+    overflow:hidden;
+
+    transition:0.25s ease;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,0.22);
+}
+
+.card:hover{
+
+    transform:
+    translateY(-8px)
+    scale(1.01);
+
+    border-color:
+    rgba(96,165,250,0.25);
+
+    box-shadow:
+    0 22px 55px rgba(59,130,246,0.14);
+}
+
+/* THUMB */
+
+.thumbnail{
+
+    width:100%;
+    height:210px;
+
+    overflow:hidden;
+
+    background:#0f172a;
+}
+
+.thumbnail img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:0.3s ease;
+}
+
+.card:hover img{
+
+    transform:scale(1.06);
+}
+
+/* CONTENT */
+
+.content{
+
+    padding:26px;
+}
+
+.content h2{
+
+    font-size:30px;
+
+    color:#f8fafc;
+
+    margin-bottom:10px;
+}
+
+.content p{
+
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+/* TAGS */
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.tag{
+
+    padding:8px 14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(59,130,246,0.12);
+
+    color:#60a5fa;
+
+    font-size:13px;
+}
+
+/* BUTTON */
+
+.play-btn{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
+    font-weight:bold;
+
+    transition:0.22s;
+}
+
+.play-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 12px 30px rgba(59,130,246,0.24);
+}
+
+/* EXPLORE */
+
+.explore-wrap{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:38px;
+}
+
+.explore-btn{
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    width:280px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    background:
+    rgba(15,23,42,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    color:#60a5fa;
+
+    font-weight:bold;
+
+    transition:0.22s;
+}
+
+.explore-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:
+    rgba(59,130,246,0.12);
+}
+
+/* FOOTER */
+
+.footer{
+
+    width:100%;
+
+    margin-top:80px;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    border-top:
+    1px solid rgba(255,255,255,0.05);
+}
+
+.footer span{
+
+    color:#60a5fa;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-light"></div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">
+DevelopKar
+</div>
+
+<div class="nav-links">
+
+  <a href="https://developkar.github.io/typing-trainer/">Home</a>
+
+        <a href="lessons.html">Lessons</a>
+
+        <a href="#">Games</a>
+
+        <a href="#">Practice</a>
+
+        <a href="#">Notes</a>
+
+        <a href="#">About</a>
+
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>
+Typing <span>Games</span>
+</h1>
+
+<p>
+Train speed, rhythm and muscle memory using lesson based games and advanced typing challenges.
+</p>
+
+</div>
+
+<!-- LESSON GAMES -->
+
+<div class="section">
+
+<div class="section-header">
+
+<h2 class="section-title">
+Lesson Wise Games
+</h2>
+
+<p class="section-desc">
+Each lesson contains dedicated games designed to improve specific finger movement, typing rhythm and precision.
+</p>
+
+</div>
+
+<div class="lesson-grid">
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/fj.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Lesson 1
+</h2>
+
+<p>
+Practice F, J and Space keys using reaction based typing gameplay.
+</p>
+
+<div class="tags">
+<div class="tag">F & J</div>
+<div class="tag">Beginner</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Lesson
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/home-row.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Lesson 2
+</h2>
+
+<p>
+Train complete home row movement with smooth obstacle typing games.
+</p>
+
+<div class="tags">
+<div class="tag">Home Row</div>
+<div class="tag">Speed</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Lesson
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/precision.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Lesson 3
+</h2>
+
+<p>
+Advanced precision lesson focused on typing consistency and control.
+</p>
+
+<div class="tags">
+<div class="tag">Precision</div>
+<div class="tag">Hard</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Lesson
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="explore-wrap">
+
+<a href="#"
+class="explore-btn">
+
+Explore More Lessons ↓
+
+</a>
+
+</div>
+
+</div>
+
+<!-- GAMES -->
+
+<div class="section">
+
+<div class="section-header">
+
+<h2 class="section-title">
+Games
+</h2>
+
+<p class="section-desc">
+Play dynamic typing games designed for reaction speed, combo rhythm and real keyboard control.
+</p>
+
+</div>
+
+<div class="lesson-grid">
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/type-jump.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Type Jump
+</h2>
+
+<p>
+Jump over obstacles by typing the correct key before collision.
+</p>
+
+<div class="tags">
+<div class="tag">Reaction</div>
+<div class="tag">Speed</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Game
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/reactor.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Key Reactor
+</h2>
+
+<p>
+Fast paced typing challenge with increasing difficulty and combo gameplay.
+</p>
+
+<div class="tags">
+<div class="tag">Combo</div>
+<div class="tag">Reflex</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Game
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+<div class="thumbnail">
+<img src="images/games/survival.jpg">
+</div>
+
+<div class="content">
+
+<h2>
+Typing Survival
+</h2>
+
+<p>
+Survive incoming enemies by typing words before they reach you.
+</p>
+
+<div class="tags">
+<div class="tag">Survival</div>
+<div class="tag">Dynamic</div>
+</div>
+
+<a href="#"
+class="play-btn">
+Play Game
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+© 2026 <span>DevelopKar</span>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
