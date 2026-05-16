@@ -1,0 +1,2113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>DevelopKar - Lesson 1</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top,
+    #111827,
+    #020617 70%);
+
+    color:white;
+
+    font-family:system-ui;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* BG LIGHT */
+
+.bg-light{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    rgba(59,130,246,0.10);
+
+    filter:blur(120px);
+
+    top:-220px;
+    right:-220px;
+
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    width:100%;
+
+    height:85px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    background:
+    rgba(15,23,42,0.78);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.06);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 50px;
+}
+
+/* LOGO */
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* LINKS */
+
+.nav-links{
+
+    display:flex;
+
+    gap:18px;
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:#cbd5e1;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    transition:0.2s;
+
+    font-size:16px;
+}
+
+.nav-links a:hover{
+
+    background:
+    rgba(59,130,246,0.15);
+
+    color:#60a5fa;
+}
+
+/* MAIN */
+
+.main{
+
+    width:1100px;
+
+    margin:40px auto 80px;
+}
+
+/* CONTAINER */
+
+.container{
+
+    background:
+    rgba(15,23,42,0.72);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 80px rgba(0,0,0,0.4);
+}
+
+/* TITLE */
+
+.title{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.title h1{
+
+    font-size:48px;
+
+    color:#60a5fa;
+}
+
+.title p{
+
+    color:#94a3b8;
+
+    margin-top:10px;
+
+    font-size:18px;
+}
+
+/* INPUT */
+
+
+/* TIMER */
+
+.timer-wrap{
+
+    margin-top:22px;
+}
+
+#timer{
+
+    margin-bottom:8px;
+
+    font-size:18px;
+
+    color:#cbd5e1;
+}
+
+.timer-bar{
+
+    width:100%;
+    height:10px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.timer-fill{
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(90deg,
+    #3b82f6,
+    #60a5fa);
+
+    transition:1s linear;
+}
+
+/* TEXT */
+
+.text{
+
+    margin-top:28px;
+
+    background:
+    rgba(2,6,23,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    min-height:150px;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+}
+
+/* LETTER */
+
+.char-box{
+
+    min-width:58px;
+    height:64px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    font-size:28px;
+    font-weight:bold;
+
+    background:#111827;
+
+    border:
+    2px solid #1e293b;
+
+    transition:0.18s;
+}
+
+/* SPACE */
+
+.space-box{
+
+    min-width:100px;
+
+    font-size:14px;
+
+    color:#94a3b8;
+
+    background:#0f172a;
+
+    border:
+    2px dashed #475569;
+
+    letter-spacing:2px;
+}
+
+/* CURRENT */
+
+.current{
+
+    border:
+    2px solid #60a5fa;
+
+    box-shadow:
+    0 0 25px rgba(96,165,250,0.45);
+
+    transform:translateY(-4px);
+}
+
+/* CORRECT */
+
+.correct{
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
+
+    opacity:0.2;
+
+    transform:scale(0.82);
+
+    border:none;
+}
+
+/* WRONG */
+
+.wrong{
+
+    background:
+    linear-gradient(135deg,
+    #ef4444,
+    #dc2626);
+
+    border:none;
+
+    animation:shake 0.2s;
+}
+
+@keyframes shake{
+
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    50%{transform:translateX(4px);}
+    75%{transform:translateX(-4px);}
+    100%{transform:translateX(0);}
+}
+
+/* TEXTAREA */
+
+textarea{
+
+    width:100%;
+    height:90px;
+
+    margin-top:25px;
+
+    background:#0f172a;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    color:white;
+
+    font-size:18px;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+}
+
+/* STATS */
+
+.stats{
+
+    margin-top:24px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.card{
+
+    background:
+    rgba(2,6,23,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:22px;
+
+    padding:24px;
+
+    text-align:center;
+}
+
+.card h3{
+
+    color:#94a3b8;
+
+    margin-bottom:10px;
+}
+
+.card p{
+
+    font-size:35px;
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* BUTTON */
+
+.start-btn{
+
+    width:100%;
+
+    margin-top:26px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.start-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 30px rgba(59,130,246,0.35);
+}
+
+/* KEYBOARD */
+
+.keyboard{
+
+    margin-top:35px;
+}
+
+.row{
+
+    display:flex;
+    justify-content:center;
+
+    margin-bottom:10px;
+}
+
+.key{
+
+    min-width:58px;
+    height:58px;
+
+    margin:5px;
+
+    border-radius:16px;
+
+    background:#111827;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:0.08s;
+}
+
+/* SPACE KEY */
+
+#k-space{
+
+    width:320px;
+}
+
+/* HIGHLIGHT */
+
+.highlight{
+
+    background:
+    linear-gradient(135deg,
+    #f59e0b,
+    #fbbf24);
+
+    color:black;
+
+    font-weight:bold;
+}
+
+/* NEXT */
+
+.next-key{
+
+    box-shadow:
+    0 0 25px rgba(59,130,246,0.65);
+
+    border:
+    1px solid #60a5fa;
+}
+
+/* ACTIVE */
+
+.active{
+
+    transform:scale(0.9);
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
+}
+
+/* POPUP */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.72);
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+
+    backdrop-filter:blur(10px);
+}
+
+.popup-box{
+
+    width:420px;
+
+    background:#0f172a;
+
+    border-radius:28px;
+
+    padding:40px;
+
+    text-align:center;
+}
+
+.popup-box h2{
+
+    font-size:40px;
+
+    color:#60a5fa;
+
+    margin-bottom:18px;
+}
+
+.popup-box p{
+
+    margin:14px 0;
+
+    font-size:20px;
+}
+
+.popup-box button{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+
+    width:100%;
+
+    padding:28px;
+
+    text-align:center;
+
+    border-top:
+    1px solid rgba(255,255,255,0.06);
+
+    background:
+    rgba(15,23,42,0.75);
+
+    color:#94a3b8;
+
+    font-size:15px;
+}
+
+.footer span{
+
+    color:#60a5fa;
+}
+/* MAIN */
+
+.main{
+
+    width:950px;
+
+    margin:25px auto 50px;
+}
+
+/* CONTAINER */
+
+.container{
+
+    padding:24px;
+}
+
+/* TITLE */
+
+.title{
+
+    margin-bottom:20px;
+}
+
+.title h1{
+
+    font-size:34px;
+}
+
+.title p{
+
+    font-size:14px;
+
+    margin-top:6px;
+}
+
+/* NAME */
+
+
+
+/* TIMER */
+
+.timer-wrap{
+
+    margin-top:16px;
+}
+
+#timer{
+
+    font-size:14px;
+
+    margin-bottom:6px;
+}
+
+.timer-bar{
+
+    height:8px;
+}
+
+/* TEXT */
+
+.text{
+
+    margin-top:18px;
+
+    padding:18px;
+
+    min-height:100px;
+
+    gap:8px;
+
+    border-radius:18px;
+}
+
+/* LETTER */
+
+.char-box{
+
+    min-width:46px;
+    height:50px;
+
+    border-radius:14px;
+
+    font-size:22px;
+}
+
+/* SPACE */
+
+.space-box{
+
+    min-width:80px;
+
+    font-size:11px;
+}
+
+/* TEXTAREA */
+
+textarea{
+
+    height:60px;
+
+    margin-top:16px;
+
+    font-size:15px;
+
+    padding:14px;
+
+    border-radius:14px;
+}
+
+/* STATS */
+
+.stats{
+
+    margin-top:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+}
+
+/* CARD */
+
+.card{
+
+    background:
+    rgba(2,6,23,0.75);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:16px;
+
+    padding:12px 18px;
+
+    text-align:center;
+
+    min-width:110px;
+}
+
+.card h3{
+
+    color:#94a3b8;
+
+    margin-bottom:4px;
+
+    font-size:12px;
+}
+
+.card p{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* BUTTON */
+
+.start-btn{
+
+    margin-top:18px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    font-size:15px;
+}
+
+/* KEYBOARD */
+
+.keyboard{
+
+    margin-top:20px;
+}
+
+.row{
+
+    margin-bottom:6px;
+}
+
+.key{
+
+    min-width:42px;
+    height:42px;
+
+    margin:3px;
+
+    border-radius:12px;
+
+    font-size:13px;
+}
+
+/* SPACE */
+
+#k-space{
+
+    width:240px;
+}
+
+/* POPUP */
+
+.popup-box{
+
+    width:340px;
+
+    padding:30px;
+
+    border-radius:22px;
+}
+
+.popup-box h2{
+
+    font-size:30px;
+
+    margin-bottom:14px;
+}
+
+.popup-box p{
+
+    margin:10px 0;
+
+    font-size:16px;
+}
+
+.popup-box button{
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-size:15px;
+}
+/* GAME LAYOUT */
+
+.game-layout{
+
+    display:flex;
+    align-items:stretch;
+   
+
+    justify-content:center;
+
+    gap:20px;
+}
+
+/* SIDE PANEL */
+
+.side-panel{
+
+    width:190px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+/* SIDE CARD */
+
+.side-card{
+
+    background:
+    rgba(15,23,42,0.72);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:18px;
+
+    padding:18px 12px;
+
+    text-align:center;
+
+    backdrop-filter:blur(12px);
+}
+
+.side-card h3{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+}
+
+.side-card p{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* CONTAINER */
+
+.container{
+
+    width:1250px;
+}
+
+/* POPUP */
+
+.popup-box{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* TICK */
+
+.complete-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    animation:pop 0.5s ease;
+}
+
+@keyframes pop{
+
+    0%{
+
+        transform:
+        scale(0.2)
+        rotate(-20deg);
+
+        opacity:0;
+    }
+
+    70%{
+
+        transform:
+        scale(1.12)
+        rotate(6deg);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+}
+
+/* BUTTON ROW */
+
+.popup-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:22px;
+}
+
+.popup-buttons button{
+
+    flex:1;
+}
+/* =========================
+FULL DESKTOP GAME LAYOUT
+========================= */
+
+.main{
+
+    width:100%;
+
+    max-width:1600px;
+
+    margin:35px auto 70px;
+
+    padding:0 18px;
+}
+
+.game-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    240px 1fr 240px;
+
+    gap:22px;
+
+    align-items:start;
+
+    width:100%;
+}
+
+/* =========================
+SIDE PANELS
+========================= */
+
+.side-panel{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+/* =========================
+SIDE CARDS
+========================= */
+
+.side-card{
+
+    background:
+    rgba(15,23,42,0.78);
+
+    border:
+    1px solid rgba(255,255,255,0.06);
+
+    border-radius:24px;
+
+    padding:28px 18px;
+
+    text-align:center;
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.18);
+}
+
+.side-card h3{
+
+    color:#94a3b8;
+
+    font-size:16px;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+}
+
+.side-card p{
+
+    font-size:44px;
+
+    font-weight:bold;
+
+    color:#60a5fa;
+}
+
+/* =========================
+CENTER CONTAINER
+========================= */
+
+.container{
+
+    width:100%;
+
+    min-width:0;
+}
+
+/* =========================
+TITLE
+========================= */
+
+.title{
+
+    margin-bottom:28px;
+}
+
+.title h1{
+
+    font-size:52px;
+}
+
+.title p{
+
+    font-size:18px;
+
+    margin-top:10px;
+}
+
+/* =========================
+NAME INPUT
+========================= */
+
+
+/* =========================
+TIMER
+========================= */
+
+.timer-wrap{
+
+    margin-top:22px;
+}
+
+#timer{
+
+    font-size:17px;
+
+    margin-bottom:8px;
+}
+
+.timer-bar{
+
+    height:10px;
+}
+
+/* =========================
+TEXT AREA
+========================= */
+
+.text{
+
+    margin-top:28px;
+
+    padding:30px;
+
+    min-height:150px;
+
+    gap:12px;
+
+    border-radius:24px;
+}
+
+/* =========================
+LETTER BOX
+========================= */
+
+.char-box{
+
+    min-width:58px;
+    height:64px;
+
+    border-radius:18px;
+
+    font-size:28px;
+}
+
+/* =========================
+SPACE BOX
+========================= */
+
+.space-box{
+
+    min-width:100px;
+
+    font-size:14px;
+}
+
+/* =========================
+TEXTAREA
+========================= */
+
+textarea{
+
+    height:90px;
+
+    margin-top:24px;
+
+    padding:18px;
+
+    font-size:18px;
+
+    border-radius:18px;
+}
+
+/* =========================
+BUTTON
+========================= */
+
+.start-btn{
+
+    margin-top:26px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    font-size:18px;
+}
+
+/* =========================
+KEYBOARD
+========================= */
+
+.keyboard{
+
+    margin-top:35px;
+}
+
+.row{
+
+    margin-bottom:10px;
+}
+
+.key{
+
+    min-width:58px;
+    height:58px;
+
+    margin:5px;
+
+    border-radius:16px;
+
+    font-size:16px;
+}
+
+/* SPACE */
+
+#k-space{
+
+    width:320px;
+}
+
+/* =========================
+POPUP
+========================= */
+
+.popup-box{
+
+    width:440px;
+
+    padding:40px;
+
+    border-radius:30px;
+}
+
+/* COMPLETE ICON */
+
+.complete-icon{
+
+    width:100px;
+    height:100px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(135deg,
+    #22c55e,
+    #16a34a);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:50px;
+
+    animation:completePop 0.5s ease;
+}
+
+@keyframes completePop{
+
+    0%{
+
+        transform:
+        scale(0.2)
+        rotate(-20deg);
+
+        opacity:0;
+    }
+
+    70%{
+
+        transform:
+        scale(1.12)
+        rotate(6deg);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+}
+
+/* =========================
+POPUP TEXT
+========================= */
+
+.popup-box h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+}
+
+.popup-box p{
+
+    margin:14px 0;
+
+    font-size:20px;
+}
+
+/* =========================
+POPUP BUTTONS
+========================= */
+
+.popup-buttons{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:24px;
+}
+
+.popup-buttons button{
+
+    flex:1;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(135deg,
+    #2563eb,
+    #3b82f6);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+
+    margin-top:50px;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-light"></div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        DevelopKar
+    </div>
+
+    <div class="nav-links">
+
+            <a href="https://developkar.github.io/typing-trainer/">Home</a>
+
+        <a href="https://developkar.github.io/typing-trainer/lessons.html">Lessons</a>
+
+        <a href="https://developkar.github.io/typing-trainer/games/games.html">Games</a>
+
+        <a href="https://developkar.github.io/typing-trainer/lessons.html">Notes</a>
+
+        <a href="#">Practice</a>
+
+    </div>
+
+</div>
+
+<div class="main">
+
+<div class="game-layout">
+
+<!-- LEFT PANEL -->
+
+<div class="side-panel">
+
+<div class="side-card">
+
+<h3>Accuracy</h3>
+
+<p id="acc">100</p>
+
+</div>
+
+<div class="side-card">
+
+<h3>Combo</h3>
+
+<p id="combo">0</p>
+
+</div>
+
+<div class="side-card">
+
+<h3>Correct</h3>
+
+<p id="correct">0</p>
+
+</div>
+
+</div>
+
+<!-- CENTER -->
+
+<div class="container">
+
+<!-- TITLE -->
+
+<div class="title">
+
+<h1>Lesson 2</h1>
+
+<p>
+ D & k Precision Training
+</p>
+
+</div>
+
+<!-- NAME -->
+
+
+<!-- TIMER -->
+
+<div class="timer-wrap">
+
+<div id="timer">
+Time: 2:00 Minute
+</div>
+
+<div class="timer-bar">
+
+<div id="timerFill"
+class="timer-fill"></div>
+
+</div>
+
+</div>
+
+<!-- TEXT -->
+
+<div id="text"
+class="text"></div>
+
+<!-- INPUT -->
+
+<textarea id="input"
+disabled></textarea>
+
+<!-- BUTTON -->
+
+<button class="start-btn"
+onclick="start()">
+
+Start Typing
+
+</button>
+
+<!-- KEYBOARD -->
+
+<div id="keyboard"
+class="keyboard"></div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="side-panel">
+
+<div class="side-card">
+
+<h3>WPM</h3>
+
+<p id="wpm">0</p>
+
+</div>
+
+<div class="side-card">
+
+<h3>Score</h3>
+
+<p id="score">0</p>
+
+</div>
+
+<div class="side-card">
+
+<h3>Stability</h3>
+
+<p id="stability">100</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div id="popup"
+class="popup">
+
+<div class="popup-box">
+
+<div class="complete-icon">
+✓
+</div>
+
+<h2>Completed</h2>
+
+<p>
+WPM:
+<b id="p_wpm"></b>
+</p>
+
+<p>
+Accuracy:
+<b id="p_acc"></b>%
+</p>
+
+<p>
+Score:
+<b id="p_score"></b>
+</p>
+
+<p>
+Correct:
+<b id="p_correct"></b>
+</p>
+
+<p>
+Combo:
+<b id="p_combo"></b>
+</p>
+
+<div class="popup-buttons">
+
+<button onclick="retryLesson()">
+
+Retry
+
+<a href="https://developkar.github.io/typing-trainer/lessons.html">
+
+<button>
+
+Combined Practice
+
+</button>
+
+</a>
+</div>
+
+</div>
+
+</div>
+<!-- FOOTER -->
+
+<div class="footer">
+
+© 2026 Copyright
+<span>DevelopKar</span>
+
+</div>
+
+<script>
+
+/* LESSON */
+
+const fullLesson =
+" d k d k d k dd kk dd kk dd kk dd kk ddd kkk dkdkd kdkdkd dd kk dkdkdk kdkdk dk k kd k dk d dk d kdkd kdkd dkd dkdk dkdk dkdk dkd kd dkd kd dkd dkd dkd dd dkd dkd dkd dkd dkd dkd dk";
+
+/* CHUNKS */
+
+let words =
+fullLesson.split(" ");
+
+let pointer = 0;
+
+let currentChunk = "";
+
+let chunkSize = 4;
+
+/* STATE */
+
+let currentIndex = 0;
+
+let correct = 0;
+let errors = 0;
+
+let time = 120;
+
+let timer = null;
+
+let started = false;
+
+let startTime = 0;
+
+/* DOM */
+
+const textDiv =
+document.getElementById("text");
+
+const input =
+document.getElementById("input");
+
+document.getElementById(
+"combo").innerText = correct;
+
+document.getElementById(
+"correct").innerText = correct;
+
+document.getElementById(
+"stability").innerText =
+Math.max(60,100-errors);
+
+/* LOAD */
+
+function loadChunk(){
+
+    if(pointer >= words.length){
+
+        finish();
+        return;
+    }
+
+    currentChunk =
+
+    words.slice(
+        pointer,
+        pointer + chunkSize
+    ).join(" ");
+
+    pointer += chunkSize;
+
+    currentIndex = 0;
+
+    textDiv.innerHTML = "";
+
+    currentChunk.split("").forEach((char,i)=>{
+
+        const box =
+        document.createElement("div");
+
+        box.classList.add("char-box");
+
+        if(char===" "){
+
+            box.innerText = "SPACE";
+
+            box.classList.add(
+            "space-box");
+
+        }
+
+        else{
+
+            box.innerText = char;
+
+        }
+
+        if(i===0){
+
+            box.classList.add(
+            "current");
+
+        }
+
+        textDiv.appendChild(box);
+
+    });
+
+}
+
+/* KEYBOARD */
+
+const layout = [
+
+["1","2","3","4","5","6","7","8","9","0"],
+
+["q","w","e","r","t","y","u","i","o","p"],
+
+["a","s","d","f","g","h","j","k","l"],
+
+["z","x","c","v","b","n","m"],
+
+["space"]
+
+];
+
+layout.forEach(row=>{
+
+    const rowDiv =
+    document.createElement("div");
+
+    rowDiv.classList.add("row");
+
+    row.forEach(k=>{
+
+        const key =
+        document.createElement("div");
+
+        key.classList.add("key");
+
+        key.innerText = k;
+
+        key.id = "k-"+k;
+
+        if(k==="d" || k==="k"){
+
+            key.classList.add(
+            "highlight");
+
+        }
+
+        rowDiv.appendChild(key);
+
+    });
+
+    keyboard.appendChild(rowDiv);
+
+});
+
+/* START */
+
+function start(){
+
+    pointer = 0;
+
+    currentIndex = 0;
+
+    correct = 0;
+    errors = 0;
+
+    time = 120;
+
+    started = true;
+
+    startTime = Date.now();
+
+    input.disabled = false;
+
+    input.focus();
+
+    loadChunk();
+
+    updateNextKey();
+
+    clearInterval(timer);
+
+    timer = setInterval(()=>{
+
+        time--;
+
+        document.getElementById(
+        "timer").innerText =
+        "Time: "+time;
+
+        document.getElementById(
+        "timerFill").style.width =
+        (time/120)*100 + "%";
+
+        updateStats();
+
+        if(time<=0){
+
+            finish();
+        }
+
+    },1000);
+
+}
+
+/* NEXT */
+
+function updateNextKey(){
+
+    document.querySelectorAll(
+    ".next-key")
+
+    .forEach(el=>{
+
+        el.classList.remove(
+        "next-key");
+
+    });
+
+    let next =
+    currentChunk[currentIndex];
+
+    if(next===" "){
+
+        next = "space";
+    }
+
+    const key =
+    document.getElementById(
+    "k-"+next);
+
+    if(key){
+
+        key.classList.add(
+        "next-key");
+    }
+
+}
+
+/* INPUT */
+
+document.addEventListener(
+"keydown",(e)=>{
+
+    if(!started) return;
+
+    let k = e.key;
+
+    let visual =
+
+    k===" "
+    ? "space"
+    : k.toLowerCase();
+
+    const keyEl =
+    document.getElementById(
+    "k-"+visual);
+
+    if(keyEl){
+
+        keyEl.classList.add(
+        "active");
+    }
+
+    e.preventDefault();
+
+    const expected =
+    currentChunk[currentIndex];
+
+    const boxes =
+    document.querySelectorAll(
+    ".char-box");
+
+    /* WRONG */
+
+    if(k!==expected){
+
+        boxes[currentIndex]
+        .classList.add("wrong");
+
+        errors++;
+
+        updateStats();
+
+        setTimeout(()=>{
+
+            boxes[currentIndex]
+            .classList.remove(
+            "wrong");
+
+        },180);
+
+        return;
+    }
+
+    /* CORRECT */
+
+    boxes[currentIndex]
+    .classList.remove("current");
+
+    boxes[currentIndex]
+    .classList.add("correct");
+
+    boxes[currentIndex]
+    .animate([
+
+        {
+            transform:
+            "scale(1)",
+
+            opacity:1,
+
+            filter:"blur(0px)"
+        },
+
+        {
+            transform:
+            "scale(0.2) rotate(25deg)",
+
+            opacity:0,
+
+            filter:"blur(10px)"
+        }
+
+    ],{
+
+        duration:220,
+        easing:"ease-out"
+
+    });
+
+    currentIndex++;
+
+    correct++;
+
+    input.value += k;
+
+    /* NEXT CHUNK */
+
+    if(currentIndex >= currentChunk.length){
+
+        setTimeout(()=>{
+
+            loadChunk();
+
+            updateNextKey();
+
+        },180);
+
+        updateStats();
+
+        return;
+    }
+
+    boxes[currentIndex]
+    .classList.add("current");
+
+    updateStats();
+
+    updateNextKey();
+
+});
+
+/* KEYUP */
+
+document.addEventListener(
+"keyup",(e)=>{
+
+    let visual =
+
+    e.key===" "
+    ? "space"
+    : e.key.toLowerCase();
+
+    const keyEl =
+    document.getElementById(
+    "k-"+visual);
+
+    if(keyEl){
+
+        keyEl.classList.remove(
+        "active");
+    }
+
+});
+
+/* STATS */
+
+function updateStats(){
+
+    const total =
+    correct + errors;
+
+    const acc =
+
+    total>0
+    ? (correct/total)*100
+    : 100;
+
+    const minutes =
+
+    (Date.now()-startTime)
+    /60000;
+
+    const wpm =
+
+    minutes>0
+    ? ((correct/5)/minutes)
+    : 0;
+
+    const score =
+    (correct*2)-errors;
+
+    document.getElementById(
+    "acc").innerText =
+    acc.toFixed(0);
+
+    document.getElementById(
+    "wpm").innerText =
+    Math.round(wpm);
+
+    document.getElementById(
+    "score").innerText =
+    score;
+}
+
+/* FINISH */
+
+function finish(){
+
+    clearInterval(timer);
+
+    started = false;
+
+    input.disabled = true;
+
+    document.getElementById(
+    "popup").style.display =
+    "flex";
+
+    document.getElementById(
+    "p_wpm").innerText =
+    document.getElementById(
+    "wpm").innerText;
+
+    document.getElementById(
+    "p_acc").innerText =
+    document.getElementById(
+    "acc").innerText;
+
+    document.getElementById(
+    "p_score").innerText =
+    document.getElementById(
+    "score").innerText;
+
+    document.getElementById(
+"p_correct").innerText =
+correct;
+
+document.getElementById(
+"p_combo").innerText =
+correct;
+}
+
+/* HOME */
+
+function goHome(){
+
+    window.location.href =
+    "../index.html";
+}
+function retryLesson(){
+
+    location.reload();
+}
+
+function goLesson(){
+
+    window.location.href =
+    "../lessons/fandj/practice.html";
+}
+</script>
+
+</body>
+</html>
